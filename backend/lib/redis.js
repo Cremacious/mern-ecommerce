@@ -11,7 +11,7 @@ export const redis = new Redis(process.env.UPSTASH_REDIS_URL, {
   lazyConnect: true,
 });
 
-// Handle Redis connection events
+
 redis.on('connect', () => {
   console.log('✅ Connected to Redis');
 });
@@ -24,7 +24,7 @@ redis.on('ready', () => {
   console.log('🚀 Redis is ready to use');
 });
 
-// Test connection function
+
 export const connectRedis = async () => {
   try {
     await redis.ping();
