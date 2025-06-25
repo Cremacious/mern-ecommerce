@@ -12,7 +12,7 @@ const SignUpPage = () => {
   });
 
   const { signup, loading } = useUserStore();
-  console.log('Loading state:', loading);
+ 
 
   const handleSubmit = (e) => {
     e.preventDefault();

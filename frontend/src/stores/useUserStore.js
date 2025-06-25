@@ -1,34 +1,41 @@
 import { create } from 'zustand';
 import axios from '../lib/axios';
 import { toast } from 'react-hot-toast';
+import { devtools } from 'zustand/middleware';
 
-export const useUserStore = create((set) => ({
-  user: null,
-  loading: false,
-  checkingAuth: true,
+export const useUserStore = create(
+  devtools((set) => ({
+    user: null,
+    loading: false,
+    checkingAuth: true,
 
-  signup: async ({ name, email, password, confirmPassword }) => {
-    set({ loading: true });
-    if (password !== confirmPassword) {
-      toast.error('Passwords do not match');
-      set({ loading: false });
-      return;
-    }
-    try {
-      const response = await axios.post('/auth/signup', {
-        name,
-        email,
-        password,
-      });
-      set({ user: response.data.user, loading: false });
-      toast.success('Signup successful!');
-    } catch (error) {
-      if (error.response && error.response.data) {
-        toast.error(error.response.data.message || 'Signup failed');
-      } else {
-        toast.error('An unexpected error occurred');
+    signup: async ({ name, email, password, confirmPassword }) => {
+      set({ loading: true });
+
+      if (password !== confirmPassword) {
+        set({ loading: false });
+        return toast.error('Passwords do not match');
       }
-      set({ loading: false });
-    }
-  },
-}));
+
+      try {
+        const res = await axios.post('/auth/signup', { name, email, password });
+        set({ user: res.data, loading: false });
+      } catch (error) {
+        set({ loading: false });
+        toast.error(error.response.data.message || 'An error occurred');
+      }
+    },
+    login: async (email, password) => {
+      set({ loading: true });
+
+      try {
+        const res = await axios.post('/auth/login', { email, password });
+
+        set({ user: res.data, loading: false });
+      } catch (error) {
+        set({ loading: false });
+        toast.error(error.response.data.message || 'An error occurred');
+      }
+    },
+  }))
+);
