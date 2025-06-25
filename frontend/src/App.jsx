@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router';
 import Home from './pages/Home';
 import SignUpPage from './pages/SignUpPage';
-import Login from './pages/Login';
+import LoginPage from './pages/LoginPage';
 import Navbar from './components/Navbar';
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </div>
     </div>
