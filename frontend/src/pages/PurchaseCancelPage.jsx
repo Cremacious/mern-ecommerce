@@ -1,5 +1,5 @@
 import { XCircle, ArrowLeft } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 const PurchaseCancelPage = () => {
   return (
