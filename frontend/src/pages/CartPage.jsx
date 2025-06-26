@@ -1,13 +1,13 @@
-import { Link } from 'react-router-dom';
-import { useCartStore } from '../stores/useCartStore';
+import { Link } from 'react-router';
+// import { useCartStore } from '../stores/useCartStore';
 import { ShoppingCart } from 'lucide-react';
 import CartItem from '../components/CartItem';
-import PeopleAlsoBought from '../components/PeopleAlsoBought';
-import OrderSummary from '../components/OrderSummary';
-import GiftCouponCard from '../components/GiftCouponCard';
+// import PeopleAlsoBought from '../components/PeopleAlsoBought';
+// import OrderSummary from '../components/OrderSummary';
+// import GiftCouponCard from '../components/GiftCouponCard';
 
 const CartPage = () => {
-  const { cart } = useCartStore();
+  // const { cart } = useCartStore();
 
   return (
     <div className="py-8 md:py-16">
@@ -19,7 +19,7 @@ const CartPage = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            {cart.length === 0 ? (
+            {/* {cart.length === 0 ? (
               <EmptyCartUI />
             ) : (
               <div className="space-y-6">
@@ -27,16 +27,16 @@ const CartPage = () => {
                   <CartItem key={item._id} item={item} />
                 ))}
               </div>
-            )}
-            {cart.length > 0 && <PeopleAlsoBought />}
+            )} */}
+            {/* {cart.length > 0 && <PeopleAlsoBought />} */}
           </div>
 
-          {cart.length > 0 && (
+          {/* {cart.length > 0 && (
             <div>
               <OrderSummary />
               <GiftCouponCard />
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

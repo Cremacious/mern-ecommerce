@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useProductStore } from '../stores/useProductStore';
 import { useParams } from 'react-router';
-import ProductCard from '../components/ProductCard';
+// import ProductCard from '../components/ProductCard';
 
 const CategoryPage = () => {
   const { fetchProductsByCategory, products } = useProductStore();
@@ -24,9 +24,9 @@ const CategoryPage = () => {
             </h2>
           )}
 
-          {products?.map((product) => (
+          {/* {products?.map((product) => (
             <ProductCard key={product._id} product={product} />
-          ))}
+          ))} */}
         </div>
       </div>
     </div>
