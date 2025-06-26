@@ -4,7 +4,7 @@ import { toast } from 'react-hot-toast';
 import { devtools } from 'zustand/middleware';
 
 export const useUserStore = create(
-  devtools((set) => ({
+  devtools((set, get) => ({
     user: null,
     loading: false,
     checkingAuth: true,
@@ -35,6 +35,38 @@ export const useUserStore = create(
       } catch (error) {
         set({ loading: false });
         toast.error(error.response.data.message || 'An error occurred');
+      }
+    },
+    logout: async () => {
+      try {
+        await axios.post('/auth/logout');
+        set({ user: null });
+      } catch (error) {
+        toast.error(
+          error.response?.data?.message || 'An error occurred during logout'
+        );
+      }
+    },
+    checkAuth: async () => {
+      set({ checkingAuth: true });
+      try {
+        const response = await axios.get('/auth/profile');
+        set({ user: response.data, checkingAuth: false });
+      } catch (error) {
+        console.log(error.message);
+        set({ checkingAuth: false, user: null });
+      }
+    },
+    refreshToken: async () => {
+      if (get().checkingAuth) return;
+      set({ checkingAuth: true });
+      try {
+        const response = await axios.post('/auth/refresh-token');
+        set({ checkingAuth: false });
+        return response.data;
+      } catch (error) {
+        set({ user: null, checkingAuth: false });
+        throw error;
       }
     },
   }))
