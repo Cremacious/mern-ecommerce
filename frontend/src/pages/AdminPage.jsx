@@ -1,9 +1,9 @@
 import { BarChart, PlusCircle, ShoppingBasket } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-// import AnalyticsTab from '../components/AnalyticsTab';
+import AnalyticsTab from '../components/AnalyticsTab';
 import CreateProductForm from '../components/CreateProductForm';
-// import ProductsList from '../components/ProductsList';
+import ProductsList from '../components/ProductLists';
 import { useProductStore } from '../stores/useProductStore';
 
 const tabs = [
@@ -42,8 +42,8 @@ const AdminPage = () => {
           ))}
         </div>
         {activeTab === 'create' && <CreateProductForm />}
-        {/* {activeTab === 'products' && <ProductsList />}
-        {activeTab === 'analytics' && <AnalyticsTab />} */}
+        {activeTab === 'products' && <ProductsList />}
+        {activeTab === 'analytics' && <AnalyticsTab />}
       </div>
     </div>
   );
