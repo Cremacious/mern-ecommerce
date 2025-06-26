@@ -48,12 +48,17 @@ const CreateProductForm = () => {
         setNewProduct({ ...newProduct, image: reader.result });
       };
 
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); 
     }
   };
 
   return (
-    <div className="max-w-lg mx-auto bg-gray-800 p-6 rounded-lg shadow-lg">
+    <div
+      className="bg-gray-800 shadow-lg rounded-lg p-8 mb-8 max-w-xl mx-auto"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+    >
       <h2 className="text-2xl font-semibold mb-6 text-emerald-300">
         Create New Product
       </h2>
